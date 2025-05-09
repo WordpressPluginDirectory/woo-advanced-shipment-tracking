@@ -51,11 +51,13 @@ class Ast_Customizer {
 	 * @since  1.0
 	*/
 	public function __construct() {
-
-		// Get our Customizer defaults
-		$this->defaults = $this->ast_generate_defaults();	
-
+		
+		add_action( 'init', array( $this, 'initialize' ) ); // Delay execution
 		$this->init();
+	}
+
+	public function initialize() {
+		$this->defaults = $this->ast_generate_defaults();
 	}
 	
 	/*
@@ -74,7 +76,7 @@ class Ast_Customizer {
 		add_action( 'wp_ajax_ast_email_preview', array( $this, 'get_preview_email' ) );
 		
 		//load javascript in admin
-		add_action('admin_enqueue_scripts', array( $this, 'customizer_enqueue_scripts' ) );
+		add_action('admin_enqueue_scripts', array( $this, 'customizer_enqueue_scripts' ), 20 );
 		
 		//load CSS/javascript in admin
 		add_action('admin_footer', array( $this, 'admin_footer_enqueue_scripts' ) );
@@ -215,7 +217,7 @@ class Ast_Customizer {
 	*
 	* @since 1.0
 	*/	
-	public function customizer_enqueue_scripts() {
+	public function customizer_enqueue_scripts( $hook ) {
 		
 		$page = isset( $_GET['page'] ) ? wc_clean( $_GET['page'] ) : '' ;
 		
@@ -231,7 +233,7 @@ class Ast_Customizer {
 		wp_enqueue_script( 'select2');
 		
 		// Add tiptip js and css file		
-		wp_enqueue_style( 'ast-customizer', plugin_dir_url(__FILE__) . 'assets/Customizer.css', array(), wc_advanced_shipment_tracking()->version );
+		wp_enqueue_style( 'ast-customizer', plugin_dir_url(__FILE__) . 'assets/Customizer.css', array(), time() );
 		wp_enqueue_script( 'ast-customizer', plugin_dir_url(__FILE__) . 'assets/Customizer.js', array( 'jquery', 'wp-util', 'wp-color-picker','jquery-tiptip' ), wc_advanced_shipment_tracking()->version, true );
 		
 		wp_localize_script('ast-customizer', 'ast_customizer', array(

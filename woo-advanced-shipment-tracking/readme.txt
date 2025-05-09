@@ -2,9 +2,9 @@
 Contributors: zorem,gaurav1092,eranzorem,satishzorem
 Tags: WooCommerce, delivery, shipping, shipment tracking, tracking
 Requires at least: 5.3
-Tested up to: 6.7.2
+Tested up to: 6.8.1
 Requires PHP: 7.2
-Stable tag: 3.7.6
+Stable tag: 3.8.1
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,30 @@ Yes, if you use external shipping services that work with the WooCommerce REST A
 3. Select default shipping carriers from setting page and add tracking number in order page.
 
 == Changelog ==
+
+= 3.8.1 =
+* Dev - Tested with WooCommerce 9.8.4 and WordPress 6.8.1
+* Dev - Re-add Option to Add Tracking on Order Update Hook
+
+= 3.8.0 =
+* Fix – Resolved issue with dismissing notices.
+
+= 3.7.9 =
+* Dev - Tested with WooCommerce 9.8.1 and WordPress 6.8 
+* Dev - Added option to log Shipment Tracking API requests in WooCommerce logs.
+* Enhancement - Show tracking source (e.g., "Manual", "CSV", "API") in the Shipment Tracking meta box.
+
+= 3.7.8 =
+* Enhancement - Redesigned the AST settings page.
+* Fix - Corrected translation loading timing for the WooCommerce text domain.
+* Fix - Fixed preg_replace parameter handling to ensure proper functionality.
+* Fix - Resolved incorrect usage of wpdb::prepare, ensuring the correct number of placeholders match the passed arguments.
+* Fix - Fixed the Datepicker initialization issue.
+
+= 3.7.7 =
+* Dev - Tested with WooCommerce 9.7.1
+* Fix - Fixed an issue where refund orders were not handled correctly, preventing potential errors.
+* Fix - Fixed incorrect function call `_load_textdomain_just_in_time`, ensuring translation loading for the WooCommerce domain occurs at the correct stage
 
 = 3.7.6 =
 * Dev - Tested with WooCommerce 9.6.2 and WordPress 6.7.2  
